@@ -16,3 +16,6 @@ bin-release/
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
+Library/Artifacts/0a/0ac4f0406e7ccf8a07dc33dae5cf58b5
+Assets/Brackeys/2D Mega Pack.meta
+*.meta
