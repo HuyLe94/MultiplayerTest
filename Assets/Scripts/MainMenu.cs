@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
         else
         {
             string error = "Please make sure to set your name. (Must be between 3-8 character)";
-            StartCoroutine(secondDelay(error));
+            StartCoroutine(secondDelay(error,errorField));
 
         }
     }
@@ -67,12 +67,12 @@ public class MainMenu : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("Lobby");
     }
 
-    IEnumerator secondDelay(string msg)
+    public IEnumerator secondDelay(string msg, Text txtbox)
     {
-        errorField.gameObject.SetActive(true);
-        errorField.text = msg;
+        txtbox.gameObject.SetActive(true);
+        txtbox.text = msg;
         yield return new WaitForSeconds(5);
-        errorField.gameObject.SetActive(false);
+        txtbox.gameObject.SetActive(false);
         
     }
 }

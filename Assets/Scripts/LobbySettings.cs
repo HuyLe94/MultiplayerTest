@@ -10,10 +10,14 @@ public class LobbySettings : MonoBehaviourPunCallbacks
 
     [SerializeField] private Text[] Username;
     [SerializeField] private Button startButton;
+    [SerializeField] private Button quitButton;
+    [SerializeField] private Text errorText;
 
-
+    MainMenu menu = new MainMenu();
+    
     private void Awake()
     {
+        PhotonNetwork.AutomaticallySyncScene = true;
         for(int x=0; x< PhotonNetwork.PlayerList.Length; x++)
         {
             Username[x].text = PhotonNetwork.PlayerList[x].ToString();
@@ -37,8 +41,22 @@ public class LobbySettings : MonoBehaviourPunCallbacks
         
     }
     
-    private void startGame()
+    public void startGame()
     {
+        if(PhotonNetwork.CountOfPlayersInRooms == PhotonNetwork.CurrentRoom.MaxPlayers)
+        {
+            PhotonNetwork.LoadLevel("MainGame");
+        }
+        else
+        {
+            string msg = "Not enough player";
+            StartCoroutine(menu.secondDelay(msg, errorText));
+        }
+        
+    }
 
+    public void quitLobby()
+    {
+        PhotonNetwork.LoadLevel("Main Menu");
     }
 }
