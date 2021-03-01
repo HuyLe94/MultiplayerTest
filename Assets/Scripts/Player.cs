@@ -12,8 +12,8 @@ public class Player : MonoBehaviourPun
     public float atk = 10;
     public float hp = 20;
     public float speed = 1;
-    public float ammo = 3;
-    public float rechargeRate = 3;
+    [SerializeField] private float ammo = 3;
+    [SerializeField] private float rechargeRate = 10;
     public float bulletSpeed = 5;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform bulletSpot;
@@ -30,15 +30,20 @@ public class Player : MonoBehaviourPun
     }
     private void Update()
     {
-        moving();
+        if (Input.GetMouseButtonDown(1) && ammo > 0)
+        {
+            shoot();
+        }
+        checkInputs();
         followMouse();
+        //Debug.Log(ammo);
         reload();
         //Debug.Log(Mathf.Sqrt(rb.velocity.x*rb.velocity.x + rb.velocity.y*rb.velocity.y));
     }
 
     private void checkInputs()
     {
-        if (Input.GetMouseButtonDown(0) && moved)
+        if (Input.GetMouseButtonDown(0))
         {
             var mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -46,10 +51,7 @@ public class Player : MonoBehaviourPun
             rb.velocity = new Vector2(mousePosition.x, mousePosition.y).normalized * speed;
             
         }
-        if (Input.GetMouseButtonDown(1) && ammo > 0)
-        {
-            shoot();
-        }
+        
     }
 
     private void moving()
@@ -66,10 +68,6 @@ public class Player : MonoBehaviourPun
             }
             moved = true;
         }
-        else
-        {
-            checkInputs();
-        }
     }
 
     private void followMouse()
@@ -82,25 +80,25 @@ public class Player : MonoBehaviourPun
 
     private void shoot()
     {
-        
-            Debug.Log("Shooting");
-            GameObject a =Instantiate(bullet, bulletSpot.position, Quaternion.identity);
-            a.GetComponent<BulletScript>().parent = gameObject;
-            a.GetComponent<Rigidbody2D>().velocity = new Vector2(Input.mousePosition.x, Input.mousePosition.y).normalized * bulletSpeed;
-            ammo--;
-            //Debug.Log(ammo);
+        GameObject a =Instantiate(bullet, bulletSpot.position, Quaternion.identity);
+        a.GetComponent<BulletScript>().parent = gameObject;
+        var mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        mousePosition = mousePosition - transform.position;
+        a.GetComponent<Rigidbody2D>().velocity = new Vector2(mousePosition.x, mousePosition.y).normalized * bulletSpeed;
+        ammo--;
     }
 
     private void reload()
     {
-        while (ammo < 3)
+        if (ammo < 3)
         {
-            rechargeRate -= 1 * Time.deltaTime;
-            Debug.Log(rechargeRate);
+            float temp = rechargeRate;
+            rechargeRate -= Time.deltaTime;
             if (rechargeRate <= 0)
             {
                 ammo++;
-                rechargeRate = 3;
+                rechargeRate = temp;
             }
         }
     }

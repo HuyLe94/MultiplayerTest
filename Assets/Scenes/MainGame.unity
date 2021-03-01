@@ -10600,5 +10600,9 @@ PrefabInstance:
       propertyPath: bulletSpot
       value: 
       objectReference: {fileID: 1602037346}
+    - target: {fileID: 6763028404103649848, guid: ff832d7e97691c545bc0182ab2c4ab36, type: 3}
+      propertyPath: rechargeRate
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff832d7e97691c545bc0182ab2c4ab36, type: 3}
