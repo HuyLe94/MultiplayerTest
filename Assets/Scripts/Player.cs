@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-
+using System.IO;
 
 public class Player : MonoBehaviourPun
 {
@@ -24,14 +24,17 @@ public class Player : MonoBehaviourPun
     {
 
     }
+    
     private void Start()
     {
+        
         if (PV.IsMine)
         {
             rb = gameObject.GetComponent<Rigidbody2D>();
         }
         
     }
+    
     private void Update()
     {
         if(PV.IsMine)
@@ -60,6 +63,7 @@ public class Player : MonoBehaviourPun
         
     }
 
+    [PunRPC]
     private void moving()
     {
         if (!moved)
@@ -75,7 +79,7 @@ public class Player : MonoBehaviourPun
             moved = true;
         }
     }
-
+    [PunRPC]
     private void followMouse()
     {
         Vector3 mousePos = Input.mousePosition;
@@ -83,10 +87,10 @@ public class Player : MonoBehaviourPun
         Vector2 direction = new Vector2(mousePos.x - transform.position.x, mousePos.y-transform.position.y);
         transform.up = direction;
     }
-
+    [PunRPC]
     private void shoot()
     {
-        GameObject a =Instantiate(bullet, bulletSpot.position, Quaternion.identity);
+        GameObject a =PhotonNetwork.Instantiate(Path.Combine("Prefabs", "TestBullet"), bulletSpot.position, Quaternion.identity);
         a.GetComponent<BulletScript>().parent = gameObject;
         var mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -94,7 +98,7 @@ public class Player : MonoBehaviourPun
         a.GetComponent<Rigidbody2D>().velocity = new Vector2(mousePosition.x, mousePosition.y).normalized * bulletSpeed;
         ammo--;
     }
-
+    [PunRPC]
     private void reload()
     {
         if (ammo < 3)
