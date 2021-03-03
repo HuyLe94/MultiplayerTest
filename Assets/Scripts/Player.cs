@@ -6,6 +6,7 @@ using Photon.Pun;
 
 public class Player : MonoBehaviourPun
 {
+    public PhotonView PV;
     private Rigidbody2D rb;
     private bool moved = false;
     public Camera selfCam;
@@ -18,7 +19,6 @@ public class Player : MonoBehaviourPun
     [SerializeField] GameObject bullet;
     [SerializeField] Transform bulletSpot;
 
-    public PhotonView pView;
 
     private void Awake()
     {
@@ -26,19 +26,25 @@ public class Player : MonoBehaviourPun
     }
     private void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        if (PV.IsMine)
+        {
+            rb = gameObject.GetComponent<Rigidbody2D>();
+        }
+        
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1) && ammo > 0)
+        if(PV.IsMine)
         {
-            shoot();
+            if (Input.GetMouseButtonDown(1) && ammo > 0)
+            {
+                shoot();
+            }
+            checkInputs();
+            followMouse();
+            reload();
         }
-        checkInputs();
-        followMouse();
-        //Debug.Log(ammo);
-        reload();
-        //Debug.Log(Mathf.Sqrt(rb.velocity.x*rb.velocity.x + rb.velocity.y*rb.velocity.y));
+        
     }
 
     private void checkInputs()

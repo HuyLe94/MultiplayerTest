@@ -17,8 +17,14 @@ public class LobbySettings : MonoBehaviourPunCallbacks
     
     private void Awake()
     {
+        
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        
         PhotonNetwork.AutomaticallySyncScene = true;
-        for(int x=0; x< PhotonNetwork.PlayerList.Length; x++)
+        for (int x = 0; x < PhotonNetwork.PlayerList.Length; x++)
         {
             Username[x].text = PhotonNetwork.PlayerList[x].ToString();
         }
@@ -27,11 +33,6 @@ public class LobbySettings : MonoBehaviourPunCallbacks
         {
             startButton.gameObject.SetActive(true);
         }
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
@@ -43,7 +44,9 @@ public class LobbySettings : MonoBehaviourPunCallbacks
     
     public void startGame()
     {
-        if(PhotonNetwork.CountOfPlayersInRooms == PhotonNetwork.CurrentRoom.MaxPlayers)
+        Debug.Log(PhotonNetwork.CurrentRoom.MaxPlayers);
+        Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
+        if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
         {
             PhotonNetwork.LoadLevel("MainGame");
         }
@@ -58,5 +61,28 @@ public class LobbySettings : MonoBehaviourPunCallbacks
     public void quitLobby()
     {
         PhotonNetwork.LoadLevel("Main Menu");
+    }
+
+    public override void OnJoinedRoom()
+    {
+
+
+        //base.OnJoinedRoom();
+        
+    }
+
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+        
+        for (int x = 0; x < PhotonNetwork.PlayerList.Length; x++)
+        {
+            Username[x].text = PhotonNetwork.PlayerList[x].ToString();
+        }
+
+        if (PhotonNetwork.IsMasterClient == true)
+        {
+            startButton.gameObject.SetActive(true);
+        }
     }
 }

@@ -43,15 +43,21 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
     public void CreateRoom()
     {
-        if (mode.options.Count == 1)
+        if (mode.value == 0)
         {
-            Debug.Log("Mode is " + mode.options.Count.ToString());
+            Debug.Log("Mode is " + mode.value.ToString());
+            PhotonNetwork.CreateRoom(hostRoomtxt.text, new RoomOptions() { MaxPlayers = 1 }, null);
+
+        }
+        else if (mode.value == 1)
+        {
+            Debug.Log("Mode is " + mode.value.ToString());
             PhotonNetwork.CreateRoom(hostRoomtxt.text, new RoomOptions() { MaxPlayers = 2 }, null);
             
         }
-        else if (mode.options.Count == 2)
+        else if (mode.value == 2)
         {
-            Debug.Log("Mode is " + mode.options.Count.ToString());
+            Debug.Log("Mode is " + mode.value.ToString());
             PhotonNetwork.CreateRoom(hostRoomtxt.text, new RoomOptions() { MaxPlayers = 4 }, null);
         }
     }
