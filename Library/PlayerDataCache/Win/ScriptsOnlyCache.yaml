@@ -18,7 +18,6 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
     PhotonUnityNetworking.Editor.dll:
-    - Photon.Pun.PhotonViewInspector
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
@@ -92,13 +91,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1450}
     - Class: 114
-      Script: {instanceID: 2070}
+      Script: {instanceID: 2072}
     - Class: 114
-      Script: {instanceID: 2572}
+      Script: {instanceID: 2574}
     - Class: 114
-      Script: {instanceID: 2730}
+      Script: {instanceID: 2732}
     - Class: 114
-      Script: {instanceID: 2912}
+      Script: {instanceID: 2914}
     - Class: 114
       Script: {instanceID: 3148}
     - Class: 114
@@ -171,27 +170,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1656}
     - Class: 114
-      Script: {instanceID: 1702}
+      Script: {instanceID: 1704}
     - Class: 114
-      Script: {instanceID: 1728}
+      Script: {instanceID: 1730}
     - Class: 114
-      Script: {instanceID: 1732}
+      Script: {instanceID: 1734}
     - Class: 114
-      Script: {instanceID: 1914}
+      Script: {instanceID: 1916}
     - Class: 114
-      Script: {instanceID: 2270}
+      Script: {instanceID: 2272}
     - Class: 114
-      Script: {instanceID: 2334}
+      Script: {instanceID: 2336}
     - Class: 114
-      Script: {instanceID: 2572}
+      Script: {instanceID: 2574}
     - Class: 114
-      Script: {instanceID: 2618}
+      Script: {instanceID: 2620}
     - Class: 114
-      Script: {instanceID: 2730}
+      Script: {instanceID: 2732}
     - Class: 114
-      Script: {instanceID: 2912}
+      Script: {instanceID: 2914}
     - Class: 114
-      Script: {instanceID: 2966}
+      Script: {instanceID: 2968}
     - Class: 114
       Script: {instanceID: 3140}
     - Class: 114
@@ -219,11 +218,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4420}
     - Class: 114
-      Script: {instanceID: 4876}
+      Script: {instanceID: 4878}
     - Class: 114
-      Script: {instanceID: 5034}
+      Script: {instanceID: 5036}
     - Class: 114
-      Script: {instanceID: 5418}
+      Script: {instanceID: 5420}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -271,8 +270,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 50
       Script: {instanceID: 0}
-    - Class: 58
-      Script: {instanceID: 0}
     - Class: 62
       Script: {instanceID: 0}
     - Class: 66
@@ -284,24 +281,14 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 616}
     - Class: 114
-      Script: {instanceID: 1914}
+      Script: {instanceID: 2230}
     - Class: 114
-      Script: {instanceID: 2228}
-    - Class: 114
-      Script: {instanceID: 2618}
-    - Class: 114
-      Script: {instanceID: 2762}
-    - Class: 114
-      Script: {instanceID: 3140}
-    - Class: 114
-      Script: {instanceID: 4876}
+      Script: {instanceID: 2764}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
-      Script: {instanceID: 0}
-    - Class: 212
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -748,7 +735,7 @@ ScriptsOnlyBuild:
     className: CurrentRoomPropertiesListedInLobbyProperty
   - hash:
       serializedVersion: 2
-      Hash: 1148fd0c0025444a6619d7a86ee4f764
+      Hash: 70bbd74ef57d0f46db26293e2486cdbb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -796,7 +783,7 @@ ScriptsOnlyBuild:
     className: ConnectAndJoinRandom
   - hash:
       serializedVersion: 2
-      Hash: 6fc097b55dd1062132f49a8db3cd0a31
+      Hash: d3ebc784b06707d02ff96454d444c40c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManagers
@@ -908,12 +895,6 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Utilities.dll
     namespaceName: Photon.Pun.UtilityScripts
     className: OnClickInstantiate
-  - hash:
-      serializedVersion: 2
-      Hash: abeae1b854e11de5223e5a538f7a4088
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: GameManager
   - hash:
       serializedVersion: 2
       Hash: 6e94ae6dce9add4548d5e152eccb22ea

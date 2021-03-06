@@ -8,16 +8,17 @@ public class Player : MonoBehaviourPun
 {
     public PhotonView PV;
     private Rigidbody2D rb;
+    public enum team { TeamA, TeamB };
+    public team side;
     private bool moved = false;
     public Camera selfCam;
-    public float atk = 10;
-    public float hp = 20;
-    public float speed = 1;
-    [SerializeField] private float ammo = 3;
-    [SerializeField] private float rechargeRate = 10;
-    public float bulletSpeed = 5;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform bulletSpot;
+    PlayersStats stats;
+
+
+    
+    private float temp;
 
 
     private void Awake()
@@ -27,25 +28,31 @@ public class Player : MonoBehaviourPun
     
     private void Start()
     {
-        
+        //side = team.TeamA;
+        stats = new PlayersStats();
         if (PV.IsMine)
         {
             rb = gameObject.GetComponent<Rigidbody2D>();
         }
-        
+        temp = stats.rechargeRate;
     }
     
     private void Update()
     {
         if(PV.IsMine)
         {
-            if (Input.GetMouseButtonDown(1) && ammo > 0)
+            if (Input.GetMouseButtonDown(1) && stats.ammo > 0)
             {
                 shoot();
             }
             checkInputs();
             followMouse();
             reload();
+
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                stats.maxAmmo += 1;
+            }
         }
         
     }
@@ -57,7 +64,7 @@ public class Player : MonoBehaviourPun
             var mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             mousePosition = mousePosition - transform.position;
-            rb.velocity = new Vector2(mousePosition.x, mousePosition.y).normalized * speed;
+            rb.velocity = new Vector2(mousePosition.x, mousePosition.y).normalized * stats.speed;
             
         }
         
@@ -73,8 +80,8 @@ public class Player : MonoBehaviourPun
                 var mousePosition = Input.mousePosition;
                 mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
                 mousePosition = mousePosition - transform.position;
-                rb.velocity = new Vector2(mousePosition.x / (Mathf.Sqrt((mousePosition.x * mousePosition.x) + (mousePosition.y * mousePosition.y))) * speed,
-                                          mousePosition.y / (Mathf.Sqrt((mousePosition.x * mousePosition.x) + (mousePosition.y * mousePosition.y))) * speed);
+                rb.velocity = new Vector2(mousePosition.x / (Mathf.Sqrt((mousePosition.x * mousePosition.x) + (mousePosition.y * mousePosition.y))) * stats.speed,
+                                          mousePosition.y / (Mathf.Sqrt((mousePosition.x * mousePosition.x) + (mousePosition.y * mousePosition.y))) * stats.speed);
             }
             moved = true;
         }
@@ -95,20 +102,19 @@ public class Player : MonoBehaviourPun
         var mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         mousePosition = mousePosition - transform.position;
-        a.GetComponent<Rigidbody2D>().velocity = new Vector2(mousePosition.x, mousePosition.y).normalized * bulletSpeed;
-        ammo--;
+        a.GetComponent<Rigidbody2D>().velocity = new Vector2(mousePosition.x, mousePosition.y).normalized * stats.bulletSpeed;
+        stats.ammo--;
     }
     [PunRPC]
     private void reload()
     {
-        if (ammo < 3)
+        if (stats.ammo < stats.maxAmmo)
         {
-            float temp = rechargeRate;
-            rechargeRate -= Time.deltaTime;
-            if (rechargeRate <= 0)
+            stats.rechargeRate -= Time.deltaTime;
+            if (stats.rechargeRate <= 0)
             {
-                ammo++;
-                rechargeRate = temp;
+                stats.ammo++;
+                stats.rechargeRate = temp;
             }
         }
     }

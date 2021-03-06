@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 571558608}
   m_Layer: 0
   m_Name: Obstacle
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2793,7 +2793,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe988dd86e647044bc599cb0b26feef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players: {fileID: 2649087489999775524, guid: ff832d7e97691c545bc0182ab2c4ab36, type: 3}
   playersSpots:
   - {fileID: 841589644}
   - {fileID: 565268651}
@@ -10165,7 +10164,7 @@ GameObject:
   - component: {fileID: 1953708724}
   m_Layer: 0
   m_Name: Homes
-  m_TagString: Untagged
+  m_TagString: Home
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

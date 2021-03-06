@@ -147,13 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PV: {fileID: 1236085870962919253}
+  side: 0
   selfCam: {fileID: 0}
-  atk: 10
-  hp: 20
-  speed: 3
-  ammo: 3
-  rechargeRate: 10
-  bulletSpeed: 1
   bullet: {fileID: 7248285837186559517, guid: 01be35d1f064ae947b925b20363ecc04, type: 3}
   bulletSpot: {fileID: 1602037346}
 --- !u!50 &76362554

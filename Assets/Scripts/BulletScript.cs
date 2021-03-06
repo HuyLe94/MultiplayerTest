@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,19 @@ public class BulletScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    [PunRPC]
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(!collision.CompareTag("Wall"))
+        {
+            if (collision.GetComponent<Player>().side != parent.GetComponent<Player>().side)
+            {
+                Destroy(gameObject);
+            }
+        }
         
     }
 }
