@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour 
+
+public class BulletScript : MonoBehaviourPun 
 { 
-    public GameObject parent;
+    //public int parent;
+    private PhotonView PV;
     // Start is called before the first frame update
     void Start()
     {
-     
+        PV = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
@@ -17,17 +19,16 @@ public class BulletScript : MonoBehaviour
     {
         
     }
-
     [PunRPC]
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!collision.CompareTag("Wall"))
-        {
-            if (collision.GetComponent<Player>().side != parent.GetComponent<Player>().side)
-            {
-                Destroy(gameObject);
-            }
-        }
-        
+        if (collision.GetComponent<PhotonView>().Owner != PV.Owner || collision.CompareTag("Wall"))
+            Destroy(gameObject);
     }
+
+    private void findParent()
+    {
+       
+    }
+
 }

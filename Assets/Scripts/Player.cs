@@ -97,8 +97,10 @@ public class Player : MonoBehaviourPun
     [PunRPC]
     private void shoot()
     {
+        
         GameObject a =PhotonNetwork.Instantiate(Path.Combine("Prefabs", "TestBullet"), bulletSpot.position, Quaternion.identity);
-        a.GetComponent<BulletScript>().parent = gameObject;
+        //a.GetComponent<BulletScript>().parent = gameObject.GetComponent<PhotonView>().GetInstanceID();
+        
         var mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         mousePosition = mousePosition - transform.position;

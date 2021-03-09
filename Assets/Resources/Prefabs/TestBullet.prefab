@@ -120,7 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5c247fba6ad454eb180ee2e5b921ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
 --- !u!114 &7424638551226955072
 MonoBehaviour:
   m_ObjectHideFlags: 0
